@@ -2,11 +2,11 @@ import fs from "fs";
 
 export class Day2 {
 
-    process() {
+    part1(noun: number, verb: number): number {
         const data: string = fs.readFileSync('data/day2.txt', 'utf8');
         let incode: Array<number> = data.split(/,/).map(Number)
-        incode[1] = 12;
-        incode[2] = 2;
+        incode[1] = noun;
+        incode[2] = verb;
 
         for (let i = 0; i < incode.length; i = i + 4) {
             let opcode: number = incode[i];
@@ -27,8 +27,21 @@ export class Day2 {
                 console.log("Error: This Opcode does not exist.");
             }
         }
-        console.log(incode);
-        return incode;
+        return incode[0];
+    }
+
+    part2(): number | undefined {
+        let goalOpcode: number = 19690720;
+
+        for (let n = 0; n < 100; n++) {
+            for (let v = 0; v < 100; v++) {
+                const output = this.part1(n, v);
+                if (output === goalOpcode) {
+                    return 100 * n + v;
+                }
+            }
+        }
+
     }
 
 }

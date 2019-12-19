@@ -4,4 +4,4 @@ const day2_1 = require("./day2");
 // const day1 = new Day1();
 const day2 = new day2_1.Day2();
 // day1.run();
-day2.process();
+console.log(day2.part2());
